@@ -1,0 +1,8 @@
+Procuro Vagas:
+	- cores do site preto #282828 e branco gelo f2f2f2
+	- criar o rodapé
+	- criar paginas de sobre
+	- criar paginas de como funciona
+	- matheus decidir se vamos armazenar os dados
+	- criar o webscrapper
+	- 
