@@ -2,8 +2,8 @@
 @extends('default')
 <!-- conteudo -->
 @section('content')
-	<h1>index</h1>
+	<h1>sobre</h1>
 @endsection
 
 <!-- page active -->
-@section('index') active @endsection
+@section('sobre') active @endsection

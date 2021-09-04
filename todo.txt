@@ -7,7 +7,6 @@ Procuro Vagas:
 		- e se nao tiver email, a gente exibe o botão para se candidatar em outro site
 
 	to do:
-		- criar o banco fisicamente
 		- criar paginas de sobre
 		- criar paginas de como funciona
 		- pagina de cadastro manual das vagas, copiando do riovagas.com.br/vagas
@@ -20,3 +19,5 @@ Procuro Vagas:
 		- modelar banco de dados onde vai guardar as vagas, com os dados e coluna para saber se é do webscrapper, manual...
 		- tabela onde vai guardar email, e coluna para saber se é anunciante ou usuario
 		- criar o rodapé
+		- criar o banco fisicamente
+		- criar enumerations sobre os tipos status e etc q existem no banco.

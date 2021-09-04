@@ -14,5 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('default');
+    return view('content.welcome');
 })->name("index");
+
+Route::get('/como-funciona', function () {
+    return view('content.comofunciona');
+})->name("comofunciona");
+
+Route::get('/criar-vaga', function () {
+    return view('content.criarvaga');
+})->name("criarvaga");
+
+Route::get('/sobre', function () {
+    return view('content.sobre');
+})->name("sobre");
+
+Route::get('/politica-e-privacidade', function () {
+    return view('content.politicaeprivacidade');
+})->name("politicaeprivacidade");
