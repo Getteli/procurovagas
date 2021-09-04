@@ -1,8 +1,22 @@
 Procuro Vagas:
-	- cores do site preto #282828 e branco gelo f2f2f2
-	- criar o rodapé
-	- criar paginas de sobre
-	- criar paginas de como funciona
-	- matheus decidir se vamos armazenar os dados
-	- criar o webscrapper
-	- 
+	details:
+		- cores do site preto #282828 e branco gelo f2f2f2
+		- cadastrar vagas
+		- webscrapper pegando as vagas
+		- as vagas q ele pegar se tiver email mostra os campos de enviar email direto, subindo o cv temporariamente e envia, depois deleta
+		- e se nao tiver email, a gente exibe o botão para se candidatar em outro site
+
+	to do:
+		- criar o banco fisicamente
+		- criar paginas de sobre
+		- criar paginas de como funciona
+		- pagina de cadastro manual das vagas, copiando do riovagas.com.br/vagas
+		- criar o webscrapper
+		- cron que vai rodar 1x por semana mandando email para o pessoal, 2 emails diferentes um para anunciante e um para usuarios
+		- cron que vai pegar as vagas no webscrapper a cada 2 dias ? 1x por semana, planejar
+		- cron que vai rodar 1x por dia, pra ver se a data da vaga ja passou e deletar
+	
+	done:
+		- modelar banco de dados onde vai guardar as vagas, com os dados e coluna para saber se é do webscrapper, manual...
+		- tabela onde vai guardar email, e coluna para saber se é anunciante ou usuario
+		- criar o rodapé
