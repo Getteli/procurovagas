@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\CodesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,14 @@ Route::get('/sobre', function () {
     return view('content.sobre');
 })->name("sobre");
 
+// url-friendly
+Route::get('/detail', function () {
+    return view('content.detail');
+})->name("detail");
+
 Route::get('/politica-e-privacidade', function () {
     return view('content.politicaeprivacidade');
 })->name("politicaeprivacidade");
+
+//
+Route::get('/cnpj/{request}', [CodesController::class, 'cnpj']);

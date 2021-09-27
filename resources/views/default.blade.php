@@ -11,10 +11,10 @@
 	<body>
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-dark black-90">
-				<div class="container-fluid">
+				<div class="container-fluid px-5">
 					<a class="navbar-brand" href="{{route('index')}}">
 						<img src="{{ asset('images/procurovagasnegativo.png') }}" alt="Procurar vagas" width="45" height="45">
-						ProcuroVagas
+						<!-- ProcuroVagas -->
 					</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -49,12 +49,12 @@
 
 			<footer class="text-center text-lg-start navbar-dark black-90 text-muted">
 				<!-- Section: Links  -->
-				<section class="">
+				<section class="pt-1">
 					<div class="container text-center text-md-start mt-5">
 						<!-- Grid row -->
 						<div class="row mt-3">
 							<!-- Grid column -->
-							<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 div-align-p">
+							<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 justify">
 								<!-- Content -->
 								<h6 class="text-uppercase fw-bold mb-4"> Procuro Vagas </h6>
 								<p> Encontre a vaga ideal para você !</p>
@@ -101,6 +101,8 @@
 				</div>
 			</footer>
 		</div>
+
 	<!-- scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
+	@yield('scripts')

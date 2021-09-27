@@ -93,6 +93,6 @@ class Vagas extends Model
 	 */
 	public function Emails()
 	{
-		return $this->hasMany('App\Models\Emails','emails_id');
+		return $this->hasMany(Emails::class,'vagas_id');
 	}
 }

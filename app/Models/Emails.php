@@ -32,6 +32,7 @@ class Emails extends Model
      */
     protected $fillable = [
         'email',
+		'vagas_id',
         'tipo_email',
         'config_subscribe'
     ];
@@ -73,6 +74,6 @@ class Emails extends Model
 	 */
 	public function Vagas()
 	{
-		return $this->belongsTo('App\Models\Vagas','vagas_id');
+		return $this->belongsTo(Vagas::class,'vagas_id');
 	}
 }
