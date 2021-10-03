@@ -7,10 +7,6 @@ Procuro Vagas:
 		- e se nao tiver email, a gente exibe o botão para se candidatar em outro site
 
 	to do:
-		- criar o controller de criar vaga
-		- alert personalizado
-		- se nao achar cnpj, mostrar alert
-		- procurar imagens e edita-las para o slide
 		- criar pagina de ver os detalhes da vaga
 		- criar paginas de como funciona
 		- criar o webscrapper
@@ -19,6 +15,10 @@ Procuro Vagas:
 		- cron que vai rodar 1x por dia, pra ver se a data da vaga ja passou e deletar
 	
 	done:
+		- procurar imagens e edita-las para o slide
+		- alert personalizado
+		- se nao achar cnpj, mostrar alert
+		- criar o controller de criar vaga
 		- pagina de cadastro manual das vagas, copiando do riovagas.com.br/vagas
 		- modelar banco de dados onde vai guardar as vagas, com os dados e coluna para saber se é do webscrapper, manual...
 		- tabela onde vai guardar email, e coluna para saber se é anunciante ou usuario

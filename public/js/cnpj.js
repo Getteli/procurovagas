@@ -10,7 +10,7 @@ document.getElementById("inputCnpj").addEventListener("focusout", function(e) {
 	let logradouro = document.getElementById('inputLogradouro');
 	let complemento = document.getElementById('inputComplemento');
 
-	if (cnpj.length <= 6) return;
+	if (cnpj.length <= 12) return;
 
 	var request = new Request("/cnpj/"+cnpj, {
 		method: "GET"
@@ -21,18 +21,26 @@ document.getElementById("inputCnpj").addEventListener("focusout", function(e) {
 		response.json()
 		.then(function(result) {
 			var data = JSON.parse(result);
-			razaoSocial.value = data.nome;
-			email.value = data.email;
-			cep.value = data.cep;
-			bairro.value = data.bairro;
-			logradouro.value = data.logradouro;
-			complemento.value = data.complemento;
-			state.value = data.uf;
-			state.onchange();
-			city.value = ChangeCity( allLowerCaseAndAccents( data.municipio ) );
+
+			if (data.status == "ERROR") {
+				showAlert("CNPJ não encontrado", "Pode ter ocorrido algum erro de digitação ou na busca do CNPJ. Tente novamente ou prossiga preenchendo todo os dados manualmente.");
+			}
+			else
+			{
+				razaoSocial.value = data.nome;
+				email.value = data.email;
+				cep.value = data.cep;
+				bairro.value = data.bairro;
+				logradouro.value = data.logradouro;
+				complemento.value = data.complemento;
+				state.value = ChangeUf(data.uf);
+				state.onchange();
+				city.value = ChangeCity( allLowerCaseAndAccents( data.municipio ) );
+			}
 		})
 	  })
 	.catch(function(err) {
+		showAlert("CNPJ não encontrado", "Pode ter ocorrido algum erro de digitação ou na busca do CNPJ. Tente novamente ou prossiga preenchendo todo os dados manualmente.");
 		console.error(err);
 	});	
 });
@@ -69,6 +77,23 @@ function ChangeCity(city) {
 	for (var option of document.getElementById("inputCity").options) {
 		var cityInSelect = allLowerCaseAndAccents(option.value);
 		if (cityInSelect == city) {
+			option.setAttribute('selected', 'selected');
+			return option.value;
+		}
+	}
+}
+
+/**
+ * pega o estado que veio da api do cnpj, compara com as opcoes no select
+ * e retorna a opcao correta
+ * @param {string} uf
+ * @returns 
+ */
+ function ChangeUf(uf) {
+	for (var option of document.getElementById("inputState").options) {
+		var ufInSelect = option.value;
+		if (ufInSelect == uf) {
+			option.setAttribute('selected', 'selected');
 			return option.value;
 		}
 	}
@@ -90,7 +115,7 @@ function inputHandler(masks, max, event) {
 }
 
 // mascara para o campo de remuneracao
-var moneyMask = ['9.999,99','99.999,99'];
+var moneyMask = ['9999.99','99999.99'];
 var money = document.getElementById('inputRemuneracao');
 VMasker(money).maskPattern(moneyMask[0]);
 money.addEventListener('input', inputHandler.bind(undefined, moneyMask, 8), false);
@@ -99,4 +124,4 @@ money.addEventListener('input', inputHandler.bind(undefined, moneyMask, 8), fals
 var docMask = ['99.999.999/9999-99'];
 var doc = document.getElementById('inputCnpj');
 VMasker(doc).maskPattern(docMask[0]);
-doc.addEventListener('input', inputHandler.bind(undefined, docMask, 14), false);
+doc.addEventListener('input', inputHandler.bind(undefined, docMask, 19), false);

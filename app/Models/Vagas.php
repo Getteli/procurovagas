@@ -6,6 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use App\Enum\TipoVaga;
+use App\Enum\TipoEmail;
+use App\Enum\Origem;
+use App\Enum\Subscribe;
+use App\Enum\FormaTrabalho;
+use Illuminate\Http\Request;
+use App\Models\Emails;
 
 class Vagas extends Model
 {
@@ -44,6 +51,10 @@ class Vagas extends Model
 		'cidade',
 		'estado',
 		'desc_vaga',
+		'cep',
+		'endereco',
+		'numero',
+		'bairro',
 		'qualificacao',
 		'caracteristicas',
 		'remuneracao',
@@ -95,4 +106,56 @@ class Vagas extends Model
 	{
 		return $this->hasMany(Emails::class,'vagas_id');
 	}
+
+	#region METHODS
+
+		public function createManually(Request $request)
+		{
+			try {
+				$email = new Emails();
+
+				$vaga = $this::create([
+					// 'cnpj' => $request->cnpj,
+					// 'origem' => Origem::Cadastro,
+					'razao_social' => $request->razaoSocial,
+					'nome_recrutador' => $request->nomeRecrutador,
+					'desc_empresa' => $request->aboutEmpresa,
+					'tipo_vaga' => $request->tipoVaga,
+					'cargo' => $request->cargo,
+					'n_vagas' => $request->nVaga,
+					'forma_trabalho' => $request->formaTrabalho,
+					'desc_vaga' => $request->descVaga,
+					'qualificacao' => $request->qualificacao,
+					'remuneracao' => $request->remuneracao,
+					'jornada' => "{$request->jornadaInicio} até {$request->jornadaFim}",
+					'cep' => $request->cep,
+					'endereco' => $request->logradouro,
+					'beneficios' => $request->beneficios,
+					'numero' => $request->complemento,
+					'bairro' => $request->bairro,
+					'estado' => $request->state,
+					'cidade' => $request->city,
+					'tempo_vaga' => $request->tempoVaga
+				]);
+				
+				if (!$email->where('email',$request->email)->exists()) {
+					$email->create([
+						'vagas_id' => $vaga->vagas_id,
+						'email' => $request->email,
+						'tipo_email' => TipoEmail::Empresa,
+						'config_subscribe' => Subscribe::ReceberTudo,
+					]);
+				}
+
+				return true;
+			} catch (\Throwable $e) {
+				return false;
+			}
+		}
+
+		public function listVagas()
+		{
+			
+		}
+	#endregion
 }

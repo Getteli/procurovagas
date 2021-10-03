@@ -45,3 +45,28 @@ document.body.addEventListener('click', function (e) {
         isMenuFooter = false;
     })
 }, false);
+
+// alert
+function showAlert(title, body) {
+    var modal = document.getElementById('modalAlert');
+    var titleModal = document.getElementById('modalAlertTitle');
+    var bodyModal = document.getElementById('modalAlertBody');
+
+    titleModal.innerHTML = title;
+    bodyModal.innerHTML = body;
+
+    modal.classList.toggle("fade");
+    modal.classList.toggle("d-block");
+}
+
+document.querySelectorAll(".closeAlert").forEach(x => 
+    x.addEventListener("click", function(){
+        var modal = document.getElementById('modalAlert');
+        modal.classList.toggle("fade");
+        modal.classList.toggle("d-block");
+    })
+)
+// para chamar um alert, na pagina blade, add
+/* <script> */
+// showAlert("title", "body");
+// </script>

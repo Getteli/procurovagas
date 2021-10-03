@@ -7,13 +7,13 @@
 	<div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="{{ asset('images/fase1.png') }}" class="d-block w-slide mx-auto" alt="Procurando uma vaga de emprego">
+				<img src="{{ asset('images/fase1.png') }}" class="d-block w-75 mx-auto" alt="A sua vaga está aqui !">
 			</div>
 			<div class="carousel-item">
-				<img src="{{ asset('images/fase2.png') }}" class="d-block w-slide mx-auto" alt="Achar a vaga que combine com você">
+				<img src="{{ asset('images/fase2.png') }}" class="d-block w-75 mx-auto" alt="As principais vagas em apenas um só lugar">
 			</div>
 			<div class="carousel-item">
-				<img src="{{ asset('images/fase3.png') }}" class="d-block w-slide mx-auto" alt="Procuro Vagas !">
+				<img src="{{ asset('images/fase3.png') }}" class="d-block w-75 mx-auto" alt="O seu futuro está aqui !!">
 			</div>
 		</div>
 		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

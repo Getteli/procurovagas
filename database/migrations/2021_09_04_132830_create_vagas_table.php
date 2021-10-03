@@ -16,7 +16,7 @@ class CreateVagasTable extends Migration
 		Schema::create('vagas', function (Blueprint $table) {
 			$table->increments('vagas_id');
 			$table->integer('origem');
-			$table->string('cnpj',17)->unique()->nullable();
+			$table->string('cnpj',19)->unique()->nullable();
 			$table->string('razao_social',100)->nullable();
 			$table->string('nome_recrutador',50)->nullable();
 			$table->mediumText('desc_empresa',45)->nullable();
@@ -34,7 +34,7 @@ class CreateVagasTable extends Migration
 			$table->string('numero', 45)->nullable();
 			$table->string('bairro', 45)->nullable();
 			$table->char('estado', 2)->nullable();
-			$table->string('cidade', 45)->nullable();
+			$table->string('cidade', 100)->nullable();
 			$table->dateTime('tempo_vaga')->nullable();
 			$table->timestamps(); // created_at/updated_At
 		});

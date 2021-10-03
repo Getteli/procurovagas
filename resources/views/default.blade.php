@@ -41,7 +41,25 @@
 					</div>
 				</div>
 			</nav>
-			
+
+			<!-- alerts -->
+			<!-- Modal -->
+			<div class="modal fade" id="modalAlert" tabindex="-1" aria-labelledby="modalAlertTitle" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalAlertTitle"></h5>
+					<button type="button" class="btn-close closeAlert" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body" id="modalAlertBody">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn black-90 text-white closeAlert" data-bs-dismiss="modal">Ok</button>
+				</div>
+				</div>
+			</div>
+			</div>
+
 			<div class="container" id="main">
 				<!-- conteudo -->
 				@yield('content')
