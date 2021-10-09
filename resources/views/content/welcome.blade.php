@@ -28,16 +28,16 @@
 
 	<!-- form -->
 	<div class="container cardstyle">
-		<form class="row g-3" action="">
+		<form class="row g-3" method="GET" action="{{route('searchvaga.form')}}">
 			<div class="col-md-6">
 				<i class="bi bi-info-lg information" title="digite sobre a vaga que deseja"></i>
 				<label for="inputText" class="form-label">O que deseja procurar ?</label>
-				<input type="text" id="inputText" class="form-control" placeholder="a vaga que eu desejo...">
+				<input type="text" id="inputText" class="form-control" name="searchterm" placeholder="a vaga que eu desejo..." value="{{request()->get('searchterm')}}">
 			</div>
 			<div class="col-md-2">
 				<i class="bi bi-info-lg information" title="caso não escolha o estado, será exibido de todo o Brasil"></i>
 				<label for="inputState" class="form-label">Estado</label>
-				<select id="inputState" class="form-select">
+				<select id="inputState" class="form-select" name="state">
 					<option value="" selected>Escolha...</option>
 					<option>...</option>
 				</select>
@@ -45,22 +45,27 @@
 			<div class="col-md-4">
 				<i class="bi bi-info-lg information" title="escolha o estado primeiro"></i>
 				<label for="inputCity" class="form-label">Cidade</label>
-				<select id="inputCity" class="form-select">
+				<select id="inputCity" class="form-select" name="city">
 					<option value="" selected>Escolha o estado</option>
 				</select>
 			</div>
 			<div class="col-md-3">
 				<label for="inputType" class="form-label">Tipo de vaga</label>
-				<select id="inputType" class="form-select">
+				<select id="inputType" class="form-select" name="type_vaga">
 					<option value="" selected>Escolha...</option>
-					<option>...</option>
+					@foreach($tipoVaga::list() as $item => $key)
+						<option value="{{$key}}" {{ request()->get('type_vaga') !== null ? (request()->get('type_vaga') == $key ? 'selected' : '') : '' }}>{{$item}}</option>
+					@endforeach
 				</select>
 			</div>
 			<div class="col-md-3">
 				<label for="inputSal" class="form-label">Faixa salarial</label>
-				<select id="inputSal" class="form-select">
+				<select id="inputSal" class="form-select" name="remuneracao">
 					<option value="0" selected>Escolha...</option>
-					<option value="1">...</option>
+					<option value="600" {{ request()->get('remuneracao') !== null ? (request()->get('remuneracao') == '600' ? 'selected' : '') : '' }}>até R$ 600</option>
+					<option value="1000" {{ request()->get('remuneracao') !== null ? (request()->get('remuneracao') == '1000' ? 'selected' : '') : '' }}>até R$ 1000</option>
+					<option value="1500" {{ request()->get('remuneracao') !== null ? (request()->get('remuneracao') == '1500' ? 'selected' : '') : '' }}>até R$ 1500</option>
+					<option value="1501" {{ request()->get('remuneracao') !== null ? (request()->get('remuneracao') == '1501' ? 'selected' : '') : '' }}>acima de R$ 1500</option>
 				</select>
 			</div>
 			<div class="col-3">
@@ -73,20 +78,27 @@
 	<!-- list -->
 	<div class="container cardstyle mt-5 mb-5">
 		<div class="row row-cols-1 row-cols-md-4 g-4 list">
-
-			<div class="col-md-4 col-sm-12">
-				<div class="card text-dark bg-light mb-3">
-					<div class="card-header text-center"">Header</div>
-					<div class="card-body">
-						<h5 class="card-title text-center"">Light card title</h5>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			@if(count($vagas) != 0)
+				@foreach($vagas as $key => $vaga)
+					<div class="col-md-4 col-sm-12">
+						<div class="card text-dark bg-light mb-3">
+							<div class="card-header text-center"">{{$vaga->cargo}}</div>
+							<div class="card-body">
+								<h6 class="card-title text-center"">{{$vaga->cargo}}</h6>
+								<p class="card-text">{{$vaga->razao_social}}</p>
+								<p class="card-text">{{$vaga->desc_vaga}}</p>
+								<hr>
+								<p class="card-text">R$ {{$vaga->remuneracao}} | <b>{{$vaga->n_vagas}}</b> vagas</p>
+							</div>
+							<a href="{{route('detail',$vaga->slug)}}">
+								<div class="card-footer text-center">abrir vaga</div>
+							</a>
+						</div>
 					</div>
-					<a href="/detail">
-						<div class="card-footer text-center">abrir vaga</div>
-					</a>
-				</div>
-			</div>
-
+				@endforeach
+			@else
+				<h3 class="w-100 text-center">Infelizmente não encontramos nenhuma vaga com esses termos.</h3>
+			@endif
 		</div>
 		
 		<!-- paginação -->
@@ -106,7 +118,9 @@
 	<script language="JavaScript" type="text/javascript" charset="utf-8">
 		new dgCidadesEstados({
 			cidade: document.getElementById('inputCity'),
-			estado: document.getElementById('inputState')
+			estado: document.getElementById('inputState'),
+			estadoVal: "{{request()->get('state')??null}}",
+        	cidadeVal: "{{request()->get('city')??null}}"
 		})
 	</script>
 @endsection

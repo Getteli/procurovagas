@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\TipoVaga;
 use Illuminate\Http\Request;
 use App\Models\Vagas;
 
 class VagasController extends Controller
 {
-    
+
     public function createManually(Request $request)
     {
         try {
@@ -36,4 +37,27 @@ class VagasController extends Controller
 			return redirect()->back()->withInput();
         }
     }
+
+	public function getVaga($slug)
+	{
+		try {
+			$vaga = Vagas::where('slug',$slug)->first();
+
+			return view('content.detail', compact('vaga'));
+		} catch (\Throwable $th) {
+			return redirect()->back()->withInput();
+		}
+	}
+
+	public function searchVaga(Request $request)
+	{
+		try {
+			$vagas = Vagas::getVagaWithParams($request);
+			$tipoVaga = TipoVaga::class;
+
+			return view('content.welcome', compact('vagas','tipoVaga'));
+		} catch (\Throwable $th) {
+			return redirect()->back()->withInput();;
+		}
+	}
 }

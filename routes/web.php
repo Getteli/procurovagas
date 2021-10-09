@@ -6,6 +6,7 @@ use App\Http\Controllers\CodesController;
 use App\Http\Controllers\VagasController;
 use App\Enum\TipoVaga;
 use App\Enum\FormaTrabalho;
+use App\Models\Vagas;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,9 @@ use App\Enum\FormaTrabalho;
 */
 
 Route::get('/', function () {
-    return view('content.welcome');
+    $vagas = Vagas::listVagas();
+    $tipoVaga = TipoVaga::class;
+    return view('content.welcome', compact('vagas','tipoVaga'));
 })->name("index");
 
 Route::get('/como-funciona', function () {
@@ -36,10 +39,10 @@ Route::get('/sobre', function () {
     return view('content.sobre');
 })->name("sobre");
 
+Route::get('/search', [VagasController::class, 'searchVaga'])->name('searchvaga.form');
+
 // url-friendly
-Route::get('/detail', function () {
-    return view('content.detail');
-})->name("detail");
+Route::get('/{slug}',[VagasController::class, 'getVaga'])->name("detail");
 
 Route::get('/politica-e-privacidade', function () {
     return view('content.politicaeprivacidade');

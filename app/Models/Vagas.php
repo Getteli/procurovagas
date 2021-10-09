@@ -13,6 +13,7 @@ use App\Enum\Subscribe;
 use App\Enum\FormaTrabalho;
 use Illuminate\Http\Request;
 use App\Models\Emails;
+use App\Aux\Codes;
 
 class Vagas extends Model
 {
@@ -42,7 +43,6 @@ class Vagas extends Model
         'cnpj',
         'razao_social',
 		'nome_recrutador',
-		'local',
 		'desc_empresa',
 		'tipo_vaga',
 		'cargo',
@@ -56,13 +56,13 @@ class Vagas extends Model
 		'numero',
 		'bairro',
 		'qualificacao',
-		'caracteristicas',
 		'remuneracao',
 		'beneficios',
 		'jornada',
 		'created_at',
 		'updated_at',
-		'tempo_vaga'
+		'tempo_vaga',
+		'slug'
     ];
 
     /**
@@ -135,6 +135,7 @@ class Vagas extends Model
 					'bairro' => $request->bairro,
 					'estado' => $request->state,
 					'cidade' => $request->city,
+					'slug' => substr(Codes::removeAllSpaces("{$request->razaoSocial}_{$request->cargo}"), 0, 100),
 					'tempo_vaga' => $request->tempoVaga
 				]);
 				
@@ -149,13 +150,73 @@ class Vagas extends Model
 
 				return true;
 			} catch (\Throwable $e) {
+				if ($vaga) {
+					$vaga->delete();
+				}
+				if ($email) {
+					$email->delete();
+				}
+
 				return false;
 			}
 		}
 
-		public function listVagas()
+		public static function listVagas()
 		{
-			
+			try {
+				$vagas = self::all();
+				return $vagas;
+			} catch (\Throwable $th) {
+				//throw $th;
+				return null;
+			}
+		}
+
+		public static function getVagaWithParams(Request $request)
+		{
+			try {
+				$vagas = new Vagas();
+
+				if (!empty($request->searchterm)) {
+					$vagas = $vagas->Where(function ($vagas) use($request) {
+						$vagas->where('cargo','LIKE','%'.$request->searchterm.'%')
+						->orWhere('razao_social','LIKE','%'.$request->searchterm.'%')
+						->orWhere('desc_vaga','LIKE','%'.$request->searchterm.'%');
+					});
+				}
+
+				if (!empty($request->state)) {
+					$vagas = $vagas->where('estado',$request->state);
+				}
+
+				if (!empty($request->city)) {
+					$vagas = $vagas->where('cidade',$request->city);
+				}
+
+				if (!empty($request->type_vaga)) {
+					$vagas = $vagas->where('tipo_vaga',$request->type_vaga);
+				}
+
+				if ($request->remuneracao != 0) {
+					switch ($request->remuneracao) {
+						case '600':
+							$vagas = $vagas->where('remuneracao','<=',$request->remuneracao);
+							break;
+						case '1000':
+							$vagas = $vagas->where('remuneracao','<=',$request->remuneracao);
+							break;
+						case '1500':
+							$vagas = $vagas->where('remuneracao','<=',$request->remuneracao);
+							break;
+						case '1501':
+							$vagas = $vagas->where('remuneracao','>=','1500');
+							break;
+					}
+				}
+				return $vagas->get();
+			} catch (\Throwable $th) {
+				return false;
+			}
 		}
 	#endregion
 }
