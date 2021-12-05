@@ -7,25 +7,24 @@ Procuro Vagas:
 		- e se nao tiver email, a gente exibe o botão para se candidatar em outro site
 
 	to do:
-		- criar paginas de como funciona
-		- criar o webscrapper
+
+	to do futuro:
 		- cron que vai rodar 1x por semana mandando email para o pessoal, 2 emails diferentes um para anunciante e um para usuarios
-		- cron que vai pegar as vagas no webscrapper a cada 2 dias ? 1x por semana, planejar
-		- cron que vai rodar 1x por dia, pra ver se a data da vaga ja passou e deletar
-	
-	done:
-		- procurar imagens e edita-las para o slide
-		- alert personalizado
-		- se nao achar cnpj, mostrar alert
-		- criar o controller de criar vaga
-		- pagina de cadastro manual das vagas, copiando do riovagas.com.br/vagas
-		- modelar banco de dados onde vai guardar as vagas, com os dados e coluna para saber se é do webscrapper, manual...
-		- tabela onde vai guardar email, e coluna para saber se é anunciante ou usuario
-		- criar o rodapé
-		- criar o banco fisicamente
-		- criar enumerations sobre os tipos status e etc q existem no banco.
-		- ajustar os botoes de paginação, colocar o botao de ver mais e/ou todo o card para abrir a pagina detalhada
-		- colocar outros campos no formulario de busca (cidade, tipo de vaga, faixas salarial)
-		- colocar o plugin de estado-cidade
-		- criar paginas de sobre
-		- criar pagina de ver os detalhes da vaga
+
+	cron:
+		- cron que vai pegar as vagas no webscrapper a cada 1x por semana
+			. * 0 * * 0 /usr/bin/env php -q /home/influencie/homologacao/app/crongetvaga.php 
+
+		- cron que vai rodar 1x por dia as 1 da manha, pra ver se a data da vaga ja passou e deletar
+			. 0 1 * * * /usr/bin/env php -q /home/influencie/homologacao/app/cronverifydata.php 
+
+	antes de subir e/ou depois de subir (acessando o terminal no cpanel e acessar a pasta do projeto), execute:
+		. composer dump-autoload
+		. php artisan config:cache
+		. php artisan clear-compiled
+		. php artisan config:clear
+		. php artisan cache:clear
+		. php artisan view:clear
+		. php artisan optimize:clear
+		ou tudo junto:
+		. composer dump-autoload & php artisan config:cache & php artisan clear-compiled & php artisan config:clear & php artisan cache:clear & php artisan view:clear

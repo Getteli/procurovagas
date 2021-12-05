@@ -58,7 +58,7 @@
 							<div class="col">
 								<label for="inputRSocial" class="form-label">Razão social</label>
 								<i class="required">*</i>
-								<input type="text" id="inputRSocial" name="razaoSocial" maxlength="60" class="form-control" placeholder="Nome Empresa.." required value="{{old('razaoSocial')}}">
+								<input type="text" id="inputRSocial" name="razaoSocial" maxlength="100" class="form-control" placeholder="Nome Empresa.." required value="{{old('razaoSocial')}}">
 							</div>
 							<div class="col">
 								<i class="bi bi-info-lg information" title="caso não escolha o estado, será exibido de todo o Brasil"></i>
@@ -88,7 +88,7 @@
 							<div class="col">
 								<label for="inputComplemento" class="form-label">Complemento/n°</label>
 								<i class="required">*</i>
-								<input type="text" id="inputComplemento" name="complemento" maxlength="45" class="form-control" placeholder="quadra X, lote Y..." required value="{{old('complemento')}}">
+								<input type="text" id="inputComplemento" name="complemento" maxlength="100" class="form-control" placeholder="quadra X, lote Y..." required value="{{old('complemento')}}">
 							</div>
 							<div class="col">
 								<label for="inputBairro" class="form-label">Bairro</label>

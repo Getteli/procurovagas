@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Enum\TipoVaga;
 use Illuminate\Http\Request;
 use App\Models\Vagas;
+use App\Cron\WebScrapper;
+use App\Mail\SendFormCV;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendFormAbout;
 
 class VagasController extends Controller
 {
@@ -15,7 +19,7 @@ class VagasController extends Controller
             $vaga = new Vagas();
             $result = $vaga->createManually($request);
 
-			if ($result) {
+			if ($result != true) {
 				\Session::flash('message',[
 					'title'=> 'Vaga criada !',
 					'message'=> 'Sua vaga foi criada com sucesso e em instantes começará a rodar para todos os candidatos.',
@@ -23,7 +27,10 @@ class VagasController extends Controller
 					'type' => 'success'
 					]);
 			}
-			else{
+			else
+			{
+				// throw new \Exception($result);
+
 				throw new \Exception("erro ao criar a vaga. Tente novamente");
 			}
 			return redirect()->back()->withInput();
@@ -40,11 +47,18 @@ class VagasController extends Controller
 
 	public function getVaga($slug)
 	{
-		try {
+		try
+		{
 			$vaga = Vagas::where('slug',$slug)->first();
 
-			return view('content.detail', compact('vaga'));
-		} catch (\Throwable $th) {
+			if ($vaga)
+			{
+				return view('content.detail', compact('vaga'));
+			}
+			return redirect()->back()->withInput();
+		}
+		catch (\Throwable $th)
+		{
 			return redirect()->back()->withInput();
 		}
 	}
@@ -59,5 +73,60 @@ class VagasController extends Controller
 		} catch (\Throwable $th) {
 			return redirect()->back()->withInput();;
 		}
+	}
+
+	public function getNewVagas()
+	{
+		$vagas = new Vagas();
+		$vagasWS = WebScrapper::getNewVagas();
+		$result = $vagas->createVagaWS($vagasWS);
+		if ($result == true)
+		{
+		}
+		else
+		{
+			// manda o erro pro email
+            Mail::to(\Config::get('mail.from.address'))
+            ->send(new SendFormAbout('Mensagem enviada de erro pelo CRON WebScrapper',
+            "metodo: getNewVagas()", "erro ao pegar novas vagas", "", 'now'));
+		}
+	}
+
+	public function verifyData()
+	{
+		WebScrapper::verifyData();
+	}
+
+	public function sendForm(Request $request)
+	{
+        try
+        {
+			foreach ($request->files as $key => $file)
+			{
+				Mail::to(\Config::get('mail.from.address'))
+				->send(new SendFormCV('Você recebeu um Currículo na sua vaga de emprego - ProcuroVagas',
+				$request->name, $request->description, $request->email, $file,'now'));
+			}
+    
+            \Session::flash('message',[
+                'title'=> 'Email enviado com sucesso',
+                'message'=> 'O empregador receberá seu email com seu Currículo, boa sorte.',
+                'type' => 'success'
+            ]);
+
+			return redirect()->back();
+        }
+        catch (\Throwable $e)
+        {
+			//"Seu email nao pode ser enviado, tente novamente mais tarde.",
+			// create session message
+			\Session::flash('message',[
+				'title'=> 'Ops :(',
+				'message'=> $e->getMessage(),
+				'type' => 'danger'
+			]);
+    
+			return redirect()->back()->withInput();
+        }
 	}
 }

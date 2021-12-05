@@ -62,7 +62,8 @@ class Vagas extends Model
 		'created_at',
 		'updated_at',
 		'tempo_vaga',
-		'slug'
+		'slug',
+		'link'
     ];
 
     /**
@@ -111,12 +112,13 @@ class Vagas extends Model
 
 		public function createManually(Request $request)
 		{
+			$vaga = $email = null;
 			try {
 				$email = new Emails();
 
 				$vaga = $this::create([
-					// 'cnpj' => $request->cnpj,
-					// 'origem' => Origem::Cadastro,
+					'cnpj' => $request->cnpj,
+					'origem' => Origem::Cadastro,
 					'razao_social' => $request->razaoSocial,
 					'nome_recrutador' => $request->nomeRecrutador,
 					'desc_empresa' => $request->aboutEmpresa,
@@ -158,13 +160,42 @@ class Vagas extends Model
 				}
 
 				return false;
+				// return $e->getMessage();
+			}
+		}
+
+		public function createVagaWS(array $vagas)
+		{
+			$vaga = null;
+			try
+			{
+				foreach ($vagas as $key => $vaga)
+				{
+					$vaga = $this::create([
+						'origem' => Origem::WebScrapper,
+						'cargo' => $vaga["titulo"],
+						'razao_social' => $vaga["empresa"],
+						'n_vagas' => $vaga["n_vagas"],
+						'remuneracao' => $vaga["remuneracao"],
+						'desc_vaga' => $vaga["desc_vaga"],
+						'estado' => $vaga["estado"],
+						'cidade' => $vaga["cidade"],
+						'slug' => $vaga["slug"],
+						'link' => $vaga["link"],
+					]);
+				}
+				return true;
+			}
+			catch (\Throwable $e)
+			{
+				echo $e->getMessage();
 			}
 		}
 
 		public static function listVagas()
 		{
 			try {
-				$vagas = self::all();
+				$vagas = self::paginate(27);
 				return $vagas;
 			} catch (\Throwable $th) {
 				//throw $th;
@@ -176,6 +207,7 @@ class Vagas extends Model
 		{
 			try {
 				$vagas = new Vagas();
+				//paginate(1);
 
 				if (!empty($request->searchterm)) {
 					$vagas = $vagas->Where(function ($vagas) use($request) {
@@ -212,11 +244,27 @@ class Vagas extends Model
 							$vagas = $vagas->where('remuneracao','>=','1500');
 							break;
 					}
-				}
-				return $vagas->get();
+				};
+				return $vagas->paginate(27);
 			} catch (\Throwable $th) {
 				return false;
 			}
+		}
+
+		public function isWS()
+		{
+			if (Origem::isWebScrapper($this->origem))
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+		public function getEmailOwner()
+		{
+			$email = Emails::where('vagas_id', $this->vagas_id)->where('tipo_email', TipoEmail::Empresa)->first();
+			return $email->email ?? '';
 		}
 	#endregion
 }

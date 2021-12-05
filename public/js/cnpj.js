@@ -42,7 +42,7 @@ document.getElementById("inputCnpj").addEventListener("focusout", function(e) {
 	.catch(function(err) {
 		showAlert("CNPJ não encontrado", "Pode ter ocorrido algum erro de digitação ou na busca do CNPJ. Tente novamente ou prossiga preenchendo todo os dados manualmente.");
 		console.error(err);
-	});	
+	});
 });
 
 /**

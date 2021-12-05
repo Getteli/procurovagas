@@ -31,12 +31,13 @@ class CreateVagasTable extends Migration
 			$table->string('jornada',70)->nullable();
 			$table->string('cep', 13)->nullable();
 			$table->string('endereco', 100)->nullable();
-			$table->string('numero', 45)->nullable();
+			$table->string('numero', 100)->nullable();
 			$table->string('bairro', 45)->nullable();
 			$table->char('estado', 2)->nullable();
 			$table->string('cidade', 100)->nullable();
 			$table->dateTime('tempo_vaga')->nullable();
 			$table->string('slug',100)->unique();
+			$table->string('link',255)->unique()->nullable();
 			$table->timestamps(); // created_at/updated_At
 		});
 	}

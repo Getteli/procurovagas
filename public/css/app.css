@@ -12,6 +12,32 @@
 	font-size: revert;
 }
 
+.size-card{
+	min-height: 280px;
+}
+
+.size-span-card{
+	height: 140px;
+	display: block;
+}
+
+.limit-p{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4; /* number of lines to show */
+	-webkit-box-orient: vertical;
+}
+
+.pos-footer-card{
+	bottom: 40px;
+	position: absolute;
+}
+
+.pos-hr{
+	width: 90%;
+}
+
 .information{
 	color: #5398fd;
 	font-size: 15px;

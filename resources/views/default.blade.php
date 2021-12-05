@@ -34,8 +34,8 @@
 								<a class="nav-link @yield('criarvaga')" href="{{route('criarvaga')}}" data-id="4">Cadastre sua vaga</a>
 							</li>
 						</ul>
-						<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Procurar Vagas" aria-label="Search">
+						<form class="d-flex" method="GET" action="{{route('searchvaga.form')}}">
+							<input class="form-control me-2" type="search" placeholder="Procurar Vagas" aria-label="Search" name="searchterm">
 							<button class="btn btn-outline-light" type="submit"><i class="bi-search"></i></button>
 						</form>
 					</div>

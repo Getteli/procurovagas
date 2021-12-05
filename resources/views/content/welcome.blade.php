@@ -75,20 +75,24 @@
 		</form>
 	</div>
 
-	<!-- list -->
 	<div class="container cardstyle mt-5 mb-5">
+		<!-- list -->
 		<div class="row row-cols-1 row-cols-md-4 g-4 list">
 			@if(count($vagas) != 0)
 				@foreach($vagas as $key => $vaga)
-					<div class="col-md-4 col-sm-12">
-						<div class="card text-dark bg-light mb-3">
-							<div class="card-header text-center"">{{$vaga->cargo}}</div>
+					<div class="col-md-4 col-sm-12 size-card">
+						<div class="card text-dark bg-light mb-3 size-card">
+							<div class="card-header text-center">{{$vaga->cargo}}</div>
 							<div class="card-body">
-								<h6 class="card-title text-center"">{{$vaga->cargo}}</h6>
+								<h6 class="card-title text-center">{{$vaga->tipo_vaga}}</h6>
 								<p class="card-text">{{$vaga->razao_social}}</p>
-								<p class="card-text">{{$vaga->desc_vaga}}</p>
-								<hr>
-								<p class="card-text">R$ {{$vaga->remuneracao}} | <b>{{$vaga->n_vagas}}</b> vagas</p>
+								<span class="size-span-card">
+									<p class="card-text limit-p">{{$vaga->desc_vaga}}...</p>
+								</span>
+								<span class="card-text pos-footer-card w-100">
+									<hr class="pos-hr"/>
+									<p>R$ {{($vaga->remuneracao == 0.00 ? 'à combinar' : $vaga->remuneracao)}} | <b>{{$vaga->n_vagas}}</b> vagas</p>
+								</span>
 							</div>
 							<a href="{{route('detail',$vaga->slug)}}">
 								<div class="card-footer text-center">abrir vaga</div>
@@ -100,15 +104,17 @@
 				<h3 class="w-100 text-center">Infelizmente não encontramos nenhuma vaga com esses termos.</h3>
 			@endif
 		</div>
-		
+
 		<!-- paginação -->
-		<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<li class="page-item disabled"><a class="page-link text-black-90" href="#">Voltar</a></li>
-				<li class="page-item"><a class="page-link text-black-90 actived-page" href="#">1</a></li>
-				<li class="page-item disabled"> <a class="page-link text-black-90" href="#">Próxima</a></li>
-			</ul>
-		</nav>
+        <div class="d-flex justify-content-center">
+            {!! $vagas->appends([
+				'searchterm' => request()->get('searchterm')??'',
+				'state' => request()->get('state')??'',
+				'city' => request()->get('city')??'',
+				'type_vaga' => request()->get('type_vaga')??'',
+				'remuneracao' => request()->get('remuneracao')??'',
+				])->links() !!}
+        </div>
 	</div>
 @endsection
 

@@ -41,18 +41,26 @@
 			</p>
 			<p><b>OBS</b>: caso a sua vaga esteja listada e você não deseja que ela apareça por favor entre em contato pelo formulário abaixo.</p>
 			<div class="container p-5">
-				<form class="row g-3 row-cols-1 d-flex justify-content-center" action="">
+				<!-- notifications -->
+				@if(Session::has('message'))
+					<div class="alert alert-{{ Session::get('message')['type'] }}" role="alert">
+						<h4 class="alert-heading">{{ Session::get('message')['title'] }}</h4>
+						<p>{{ Session::get('message')['message'] }}</p>
+					</div>
+				@endif
+				<form class="row g-3 row-cols-1 d-flex justify-content-center" method="POST" action="{{ route('send.form.about') }}">
+					@csrf
 					<div class="col-md-4 col-sm-12">
 						<label for="inputEmail" class="form-label">E-mail</label>
-						<input type="email" id="inputEmail" class="form-control" placeholder="seuemail@...">
+						<input type="email" id="inputEmail" name="email" class="form-control" placeholder="seuemail@...">
 					</div>
 					<div class="col-md-4 col-sm-12">
 						<label for="inputName" class="form-label">Nome</label>
-						<input type="email" id="inputname" class="form-control" placeholder="seu nome">
+						<input type="text" id="inputname" name="name" class="form-control" placeholder="seu nome">
 					</div>
 					<div class="col-md-8 col-sm-12">
 						<label for="inputTextArea">Descreva a sua vaga</label>
-						<textarea id="inputTextArea" class="form-control"></textarea>
+						<textarea id="inputTextArea" name="description" class="form-control"></textarea>
 					</div>
 					<div class="col-md-8 col-sm-12 d-flex justify-content-end">
 						<button class="btn btn-outline-dark" type="submit"><i class="bi-envelope"></i></button>

@@ -90,5 +90,48 @@
 				</div>
 			</div>
 		</div>
+		&nbsp;
+		<hr>
+		@if(!$vaga->isWS())
+			<div class="d-grid gap-2">
+				<a href="{{ $vaga->link }}" target="_blank" class="btn btn-primary" type="button">CANDIDATAR</a>
+			</div>
+		@else
+			<!-- notifications -->
+			@if(Session::has('message'))
+				<div class="alert alert-{{ Session::get('message')['type'] }}" role="alert">
+					<h4 class="alert-heading">{{ Session::get('message')['title'] }}</h4>
+					<p>{{ Session::get('message')['message'] }}</p>
+				</div>
+			@endif
+			<div class="d-grid gap-2">
+				<h3 class="subtitle text-center">
+					Candidatar-se
+				</h3>
+				<form class="row g-3 row-cols-1 d-flex justify-content-center" method="POST" action="{{ route('send.form.vaga') }}" enctype="multipart/form-data">
+						@csrf
+						<input type="hidden" name="emailowner" value="{{ $vaga->getEmailOwner() }}">
+						<div class="col-md-4 col-sm-12">
+							<label for="inputEmail" class="form-label">Seu e-mail</label>
+							<input type="email" id="inputEmail" name="email" class="form-control" placeholder="seuemail@..." required>
+						</div>
+						<div class="col-md-4 col-sm-12">
+							<label for="inputName" class="form-label">Nome</label>
+							<input type="text" id="inputname" name="name" class="form-control" placeholder="seu nome" required>
+						</div>
+						<div class="col-md-8 col-sm-12">
+							<label for="inputTextArea">Descreva por que gostaria dessa vaga</label>
+							<textarea id="inputTextArea" name="description" class="form-control" required></textarea>
+						</div>
+						<div class="col-md-8 col-sm-12">
+							<label for="formFile" class="form-label">Subir seu Currículo</label>
+							<input class="form-control" type="file" accept=".pdf" id="cv" name="cv" required>
+						</div>
+						<div class="col-md-8 col-sm-12 d-flex justify-content-end">
+							<button class="btn btn-outline-dark" type="submit"><i class="bi-envelope"></i></button>
+						</div>
+					</form>
+			</div>
+		@endif
 	</div>
 @endsection
