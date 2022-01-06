@@ -91,12 +91,22 @@
 								</span>
 								<span class="card-text pos-footer-card w-100">
 									<hr class="pos-hr"/>
-									<p>R$ {{($vaga->remuneracao == 0.00 ? 'à combinar' : $vaga->remuneracao)}} | <b>{{$vaga->n_vagas}}</b> vagas</p>
+									@if($vaga->remuneracao != -1)
+										<p>R$ {{($vaga->remuneracao == 0.00 ? 'à combinar' : $vaga->remuneracao)}} | <b>{{$vaga->n_vagas}}</b> vagas</p>
+									@else
+										<p>Acesse a vaga e <b>saiba mais</b></p>
+									@endif
 								</span>
 							</div>
-							<a href="{{route('detail',$vaga->slug)}}">
-								<div class="card-footer text-center">abrir vaga</div>
-							</a>
+							@if($vaga->slug != null)
+								<a href="{{route('detail',$vaga->slug)}}">
+									<div class="card-footer text-center">abrir vaga</div>
+								</a>
+							@else
+								<a href="{{ $vaga->link }}" target="_blank">
+									<div class="card-footer text-center">abrir vaga</div>
+								</a>
+							@endif
 						</div>
 					</div>
 				@endforeach

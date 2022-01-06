@@ -7,6 +7,14 @@ Procuro Vagas:
 		- e se nao tiver email, a gente exibe o botão para se candidatar em outro site
 
 	to do:
+		- subir para o servidor
+		- rodar o banco
+		- comprar o dominio
+		- configurar
+		- ver para rodar cron automatico no servidor VPS
+		- por o google adsense
+		- fazer propaganda
+		- ORAR
 
 	to do futuro:
 		- cron que vai rodar 1x por semana mandando email para o pessoal, 2 emails diferentes um para anunciante e um para usuarios

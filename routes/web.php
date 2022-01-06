@@ -1,14 +1,14 @@
 <?php
 
+use App\Models\Vagas;
+use App\Enum\TipoVaga;
 use App\Cron\WebScrapper;
-use Illuminate\Support\Facades\Route;
+use App\Enum\FormaTrabalho;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CodesController;
 use App\Http\Controllers\VagasController;
-use App\Enum\TipoVaga;
-use App\Enum\FormaTrabalho;
-use App\Http\Controllers\Controller;
-use App\Models\Vagas;
 
 /*
 |--------------------------------------------------------------------------
