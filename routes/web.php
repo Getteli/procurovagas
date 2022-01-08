@@ -1,5 +1,6 @@
 <?php
 
+use App\Aux\Codes;
 use App\Models\Vagas;
 use App\Enum\TipoVaga;
 use App\Cron\WebScrapper;
@@ -28,6 +29,12 @@ Route::get('/', function () {
     $vagas = Vagas::listVagas();
     $tipoVaga = TipoVaga::class;
     return view('content.welcome', compact('vagas','tipoVaga'));
+
+    // faz o caraio do teste de caracter e emoji antes de continuar
+    // $string = "çá çé çí çó çũ são #Local de trabalho: Recife/PE #O que oferecemos: Vale-transporte; 🥗 Refeitório; ‍️  E oferecemos: 🚌 Vale-transporte; 🥗 Refeitório; 💆‍♂️ Área, , ";
+    // $result = Codes::removeEmoji($string);
+
+    // dd($result);
 })->name("index");
 
 Route::get('/politica-e-privacidade', function () {

@@ -109,6 +109,10 @@ abstract class Codes
 		$regex_dingbats = '/[\x{2700}-\x{27BF}]/u';
 		$clear_string = preg_replace($regex_dingbats, '', $clear_string);
 	
+		// outras merdas q nao sai nem por um caraio inferno
+		$regex_saiCapeta = '/[\x{1F957}]/u';
+		$clear_string = preg_replace($regex_saiCapeta, '', $clear_string);
+
 		return $clear_string;
 	}
 }
