@@ -7,7 +7,6 @@ Procuro Vagas:
 		- e se nao tiver email, a gente exibe o botão para se candidatar em outro site
 
 	to do:
-		- ver para rodar cron automatico no servidor VPS
 		- por o google adsense
 		- fazer propaganda
 		- ORAR
@@ -17,10 +16,10 @@ Procuro Vagas:
 
 	cron:
 		- cron que vai pegar as vagas no webscrapper a cada 1x por semana
-			. * 0 * * 0 /usr/bin/env php -q /home/influencie/homologacao/app/crongetvaga.php 
+			. * 0 * * 0 wget https://procurovagas.com.br/webscrapper/vagas
 
 		- cron que vai rodar 1x por dia as 1 da manha, pra ver se a data da vaga ja passou e deletar
-			. 0 1 * * * /usr/bin/env php -q /home/influencie/homologacao/app/cronverifydata.php 
+			. 0 1 * * * wget https://procurovagas.com.br/webscrapper/verify
 
 	antes de subir e/ou depois de subir (acessando o terminal no cpanel e acessar a pasta do projeto), execute:
 		. composer dump-autoload

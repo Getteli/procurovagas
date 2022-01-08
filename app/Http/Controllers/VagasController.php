@@ -145,11 +145,4 @@ class VagasController extends Controller
 			return redirect()->back()->withInput();
         }
 	}
-
-	public function testeEmail()
-	{
-		Mail::to("douglas_araujo018@outlook.com")
-		->send(new SendFormAbout("TESTE HEADER2",
-		"hello world", "testeeee", "", 'now'));
-	}
 }

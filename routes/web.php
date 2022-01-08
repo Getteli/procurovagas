@@ -48,9 +48,6 @@ Route::get('/sobre', function () {
     return view('content.sobre');
 })->name("sobre");
 
-Route::get('/testeemail', [VagasController::class, 'testeEmail'])->name('testeemail.get');
-
-
 // metodo que faz o search na pagina principal
 Route::get('/search', [VagasController::class, 'searchVaga'])->name('searchvaga.form');
 
