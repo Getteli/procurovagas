@@ -39,7 +39,7 @@
 			<!-- topo -->
 			<tr>
 				<td align="center" class="space_top">
-					<a href="https://agenciapublikando.com.br/">
+					<a href="https://procurovagas.com.br/">
 						<img src="{{ asset("assets/lt.png") }}" alt="ProcuroVagas" width="280" class="logo_top" height="auto"/>
 					</a>
 				</td>
@@ -78,19 +78,14 @@
 						<tr>
 							<td align="left">
 								© 2021 Copyright | todos os direitos reservados a <br>
-								<a href="https://agenciapublikando.com.br/">Procuro Vagas</a>
+								<a href="https://procurovagas.com.br/">Procuro Vagas</a>
 							</td>
 							<td align="right">
 								<table border="0" cellpadding="10" cellspacing="0">
 									<tr>
 										<td>
-											<a href="https://web.facebook.com/agenciapublikando/">
+											<a href="https://web.facebook.com/iliontecnologia/">
 												<img src="{{ asset("assets/fb.png") }}" alt="Facebook" width="38" height="38" border="0"/>
-											</a>
-										</td>
-										<td>
-											<a href="https://www.instagram.com/agenciapublikando/">
-												<img src="{{ asset("assets/ig.png") }}" alt="Instagram" width="38" height="38" border="0"/>
 											</a>
 										</td>
 									</tr>

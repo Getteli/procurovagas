@@ -148,8 +148,8 @@ class VagasController extends Controller
 
 	public function testeEmail()
 	{
-		Mail::to(\Config::get('mail.from.address'))
-		->send(new SendFormAbout("teste titulo",
+		Mail::to("douglas_araujo018@outlook.com")
+		->send(new SendFormAbout("TESTE HEADER",
 		"hello world", "testeeee", "", 'now'));
 	}
 }

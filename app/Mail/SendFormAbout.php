@@ -38,8 +38,8 @@ class SendFormAbout extends Mailable
      */
     public function build()
     {
-		return $this->from(\Config::get('mail.from.address'))
-		->subject(\Config::get('mail.from.name').'- Contato')
+		return $this->from(\Config::get('mail.from.address'), "Procuro Vagas")
+		->subject(\Config::get('mail.from.name')." - Contato")
 		->view('email.about')
 		->with([
 			'title_e' => $this->title,
