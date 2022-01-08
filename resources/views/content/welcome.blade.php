@@ -87,7 +87,7 @@
 								<h6 class="card-title text-center">{{$vaga->tipo_vaga}}</h6>
 								<p class="card-text">{{$vaga->razao_social}}</p>
 								<span class="size-span-card">
-									<p class="card-text limit-p">{{$vaga->desc_vaga}}...</p>
+									<p class="card-text limit-p">{!! $vaga->desc_vaga !!}...</p>
 								</span>
 								<span class="card-text pos-footer-card w-100">
 									<hr class="pos-hr"/>

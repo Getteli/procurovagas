@@ -276,10 +276,18 @@ abstract class WebScrapper
 				$localVaga = $localArray[$controlewhile];
 				$descricaoVaga = $descricaoArray[$controlewhile];
 				$linkVaga = $linkArray[$controlewhile];
-
+				$cidadeVaga = null;
+				$estadoVaga = null;
 				$localVaga = Codes::separateInArray($localVaga, ",");
-				$cidadeVaga = Codes::removeAllTracos($localVaga[0]);
-				$estadoVaga = Codes::removeTracos($localVaga[1]);
+
+				if (isset($localVaga[0]))
+				{
+					$cidadeVaga = Codes::removeAllTracos($localVaga[0]);
+				}
+				if (isset($localVaga[1]))
+				{
+					$estadoVaga = Codes::removeTracos($localVaga[1]);
+				}
 
 				$datavagas[] = [
 					"titulo" => $tituloVaga,
@@ -292,6 +300,12 @@ abstract class WebScrapper
 					"link" => $linkVaga,
 					"slug" => null
 				];
+
+				// echo $tituloVaga."<br>";
+				// echo $estadoVaga."<br>";
+				// echo $descricaoVaga."<br>";
+				// echo $linkVaga."<br>";
+
 				$controlewhile = $controlewhile + 1;
 			}
 		}
@@ -302,7 +316,7 @@ abstract class WebScrapper
 	/**
 	 * metodo que fará um scrapper no site - Vagas
 	 *
-	 * @return void
+	 * @return array
 	 */
 	public static function getNewVagas3()
 	{

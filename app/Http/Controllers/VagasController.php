@@ -77,6 +77,7 @@ class VagasController extends Controller
 
 	public function getNewVagas()
 	{
+		// webscrapper 1
 		try
 		{
 			// var aux
@@ -86,26 +87,63 @@ class VagasController extends Controller
 			$vagasWS1 = WebScrapper::getNewVagas();
 			$result1 = $vagas->createVagaWS($vagasWS1);
 
-			// site 2
-			$vagasWS2 = WebScrapper::getNewVagas3();
-			$result2 = $vagas->createVagaWS($vagasWS2);
-
-			// site 3
-			$vagasWS3 = WebScrapper::getNewVagas3();
-			$result3 = $vagas->createVagaWS($vagasWS3);
-
-			if ($result1 !== true || $result2 !== true || $result3 !== true)
+			if ($result1 !== true)
 			{
-				throw new \Exception($result1 . " | " . $result2 . " | " . $result3);
+				throw new \Exception($result1);
 			}
 		}
 		catch (\Throwable $th)
 		{
 			Mail::to(\Config::get('mail.from.address'))
 			->send(new SendFormAbout($th->getMessage(),
-			"metodo: getNewVagas()", "erro ao pegar novas vagas", "", 'now'));
+			"metodo: getNewVagas()", "erro ao pegar novas vagas - getNewVagas()", "", 'now'));
 		}
 
+		// webscrapper 2
+		try
+		{
+			// var aux
+			$vagas = new Vagas();
+
+			// site 2
+			$vagasWS2 = WebScrapper::getNewVagas2();
+			$result2 = $vagas->createVagaWS($vagasWS2);
+
+			if ($result2 !== true)
+			{
+				throw new \Exception($result2);
+			}
+		}
+		catch (\Throwable $th)
+		{
+			Mail::to(\Config::get('mail.from.address'))
+			->send(new SendFormAbout($th->getMessage(),
+			"metodo: getNewVagas()", "erro ao pegar novas vagas - getNewVagas2()", "", 'now'));
+		}
+
+		// webscrapper 3
+		try
+		{
+			// var aux
+			$vagas = new Vagas();
+
+			// site 3
+			$vagasWS3 = WebScrapper::getNewVagas3();
+			$result3 = $vagas->createVagaWS($vagasWS3);
+
+			if ($result3 !== true)
+			{
+				throw new \Exception($result3);
+			}
+		}
+		catch (\Throwable $th)
+		{
+			Mail::to(\Config::get('mail.from.address'))
+			->send(new SendFormAbout($th->getMessage(),
+			"metodo: getNewVagas()", "erro ao pegar novas vagas - getNewVagas3()", "", 'now'));
+		}
+
+		dd("done");
 	}
 
 	public function verifyData()
