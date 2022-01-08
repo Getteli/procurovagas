@@ -92,7 +92,7 @@
 		</div>
 		&nbsp;
 		<hr>
-		@if(!$vaga->isWS())
+		@if($vaga->isWS())
 			<div class="d-grid gap-2">
 				<a href="{{ $vaga->link }}" target="_blank" class="btn btn-primary" type="button">CANDIDATAR</a>
 			</div>

@@ -145,4 +145,11 @@ class VagasController extends Controller
 			return redirect()->back()->withInput();
         }
 	}
+
+	public function testeEmail()
+	{
+		Mail::to(\Config::get('mail.from.address'))
+		->send(new SendFormAbout("teste titulo",
+		"hello world", "testeeee", "", 'now'));
+	}
 }

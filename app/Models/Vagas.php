@@ -172,15 +172,15 @@ class Vagas extends Model
 				foreach ($vagas as $key => $vaga)
 				{
 					$cargo = substr($vaga["titulo"], 0, 50);
-					$cargo = preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$cargo);
+					// $cargo = preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$cargo);
 					$razao_social = substr($vaga["empresa"], 0, 100);
-					$razao_social = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $razao_social);
+					// $razao_social = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $razao_social);
 					$desc_vaga = substr($vaga["desc_vaga"], 0, 4294967295);
-					$desc_vaga = preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$desc_vaga);
+					// $desc_vaga = preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$desc_vaga);
 					$estado = substr($vaga["estado"], 0, 2);
-					$estado = preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$estado);
+					// $estado = preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$estado);
 					$cidade = substr($vaga["cidade"], 0, 100);
-					$cidade = preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$cidade);
+					// $cidade = preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$cidade);
 
 					$vaga = $this::create([
 						'origem' => Origem::WebScrapper,
