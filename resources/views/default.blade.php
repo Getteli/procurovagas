@@ -10,10 +10,34 @@
 		<!-- End Google Tag Manager -->
 
 		<meta charset="utf-8">
+		<meta http-equiv="Content-Language" content="pt">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+
+		<!-- search google -->
+		<META NAME="DESCRIPTION" CONTENT="Procuro Vagas - pesquise por vagas em todo o brasil e ache a vaga que você tanto precisa ! acesse agora e pesquise o emprego dos seus sonhos no seu estado">
+		<META NAME="ABSTRACT" CONTENT="Procuro Vagas, Vagas de emprego, vagas de trabalho, Procuro Trabalho.">
+		<META NAME="KEYWORDS" CONTENT="vagas, procuro, procuro vagas, emprego, procuro emprego, vagas de trabalho, vagas de emprego, pesquisar vagas, vagas no brasil, empregos pelo brasil">
+		<META NAME="ROBOT" CONTENT="Index,Follow,Noarchive">
+		<META NAME="googlebot" CONTENT="Index,Follow,Noarchive">
+		<meta name="google-site-verification" content="qdIw-d1XQYRl9k5jFpfolRaRBbKErYpdQ5KE_uJ5TNM"/>
+		<META NAME="LANGUAGE" CONTENT="PT">
+		<!-- OG facebook -->
+		<meta property="og:locale" content="pt_BR">
+		<meta property="og:url" content="index.php">
+		<meta property="og:title" content="Procuro Vagas">
+		<meta property="og:site_name" content="procurovagas">
+		<meta property="og:description" content="Procuro Vagas - pesquise por vagas em todo o brasil e ache a vaga que você tanto precisa ! acesse agora e pesquise o emprego dos seus sonhos no seu estado">
+		<meta property="og:image" content="/images/procurovagas.png">
+		<meta property="og:image:secure_url" content="https://procurovagas.com.br/images/procurovagas.png">
+		<meta property="og:image:type" content="image/jpeg">
+		<meta property="og:image:width" content="150"> <!-- pixel -->
+		<meta property="og:image:height" content="150"> <!-- pixel -->
+		<meta property="og:type" content="website">
+
+		<link rel="canonical" href="https://procurovagas.com.br/">
 		<title>Procuro Vagas</title>
 	</head>
 	<body>
@@ -116,6 +140,9 @@
 								</p>
 								<p>
 									<a class="text-reset @yield('politicaeprivacidade')" href="{{route('politicaeprivacidade')}}" data-id="5">Política e privacidade</a>
+								</p>
+								<p>
+									<a class="text-reset" href="sitemap.xml" data-id="6">SiteMap</a>
 								</p>
 							</div>
 						</div>
