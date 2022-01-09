@@ -24,7 +24,7 @@ class Controller extends BaseController
     {
         try
         {
-            Mail::to(\Config::get('mail.from.address'))
+            Mail::to("iliontecnologia@gmail.com")
             ->send(new SendFormAbout('Mensagem enviada pela página de contato',
             $request->name, $request->description, $request->email, 'now'));
     

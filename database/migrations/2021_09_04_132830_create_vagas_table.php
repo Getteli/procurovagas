@@ -37,7 +37,7 @@ class CreateVagasTable extends Migration
 			$table->string('cidade', 100)->nullable();
 			$table->dateTime('tempo_vaga')->nullable();
 			$table->string('slug',100)->unique()->nullable();
-			$table->string('link',255)->nullable();
+			$table->string('link',255)->unique()->nullable();
 			$table->timestamps(); // created_at/updated_At
 		});
 	}

@@ -33,7 +33,8 @@ abstract class WebScrapper
 		'23'=>'santa-catarina',
 		'24'=>'são-paulo',
 		'25'=>'sergipe',
-		'26'=>'tocantins');
+		'26'=>'tocantins'
+	);
 	const EstadosSigla = array(
 		'0'=>'AC',
 		'1'=>'AL',
@@ -61,7 +62,8 @@ abstract class WebScrapper
 		'23'=>'SC',
 		'24'=>'SP',
 		'25'=>'SE',
-		'26'=>'TO');
+		'26'=>'TO'
+	);
 	
 	/**
 	 * metodo que fará um scrapper no site - trabalhabrasil
@@ -300,11 +302,6 @@ abstract class WebScrapper
 					"link" => $linkVaga,
 					"slug" => null
 				];
-
-				// echo $tituloVaga."<br>";
-				// echo $estadoVaga."<br>";
-				// echo $descricaoVaga."<br>";
-				// echo $linkVaga."<br>";
 
 				$controlewhile = $controlewhile + 1;
 			}

@@ -7,6 +7,7 @@ Procuro Vagas:
 		- e se nao tiver email, a gente exibe o botão para se candidatar em outro site
 
 	to do:
+		- colocar descricao, SEO, ver google search, robot.txt e etc etc
 		- por o google adsense
 		- fazer propaganda
 		- ORAR

@@ -85,11 +85,25 @@ class VagasController extends Controller
 
 			// site 1
 			$vagasWS1 = WebScrapper::getNewVagas();
-			$result1 = $vagas->createVagaWS($vagasWS1);
 
-			if ($result1 !== true)
+			// site 2
+			$vagasWS2 = WebScrapper::getNewVagas2();
+
+			// site 3
+			$vagasWS3 = WebScrapper::getNewVagas3();
+
+			$all_vagas = array_merge($vagasWS1, $vagasWS2, $vagasWS3);
+			$all_vagas = array_filter($all_vagas);
+
+			$result = $vagas->createVagaWS($all_vagas);
+
+			if ($result !== true)
 			{
-				throw new \Exception($result1);
+				throw new \Exception($result);
+			}
+			else
+			{
+				$all_vagas = null;
 			}
 		}
 		catch (\Throwable $th)
@@ -99,51 +113,8 @@ class VagasController extends Controller
 			"metodo: getNewVagas()", "erro ao pegar novas vagas - getNewVagas()", "", 'now'));
 		}
 
-		// webscrapper 2
-		try
-		{
-			// var aux
-			$vagas = new Vagas();
-
-			// site 2
-			$vagasWS2 = WebScrapper::getNewVagas2();
-			$result2 = $vagas->createVagaWS($vagasWS2);
-
-			if ($result2 !== true)
-			{
-				throw new \Exception($result2);
-			}
-		}
-		catch (\Throwable $th)
-		{
-			Mail::to(\Config::get('mail.from.address'))
-			->send(new SendFormAbout($th->getMessage(),
-			"metodo: getNewVagas()", "erro ao pegar novas vagas - getNewVagas2()", "", 'now'));
-		}
-
-		// webscrapper 3
-		try
-		{
-			// var aux
-			$vagas = new Vagas();
-
-			// site 3
-			$vagasWS3 = WebScrapper::getNewVagas3();
-			$result3 = $vagas->createVagaWS($vagasWS3);
-
-			if ($result3 !== true)
-			{
-				throw new \Exception($result3);
-			}
-		}
-		catch (\Throwable $th)
-		{
-			Mail::to(\Config::get('mail.from.address'))
-			->send(new SendFormAbout($th->getMessage(),
-			"metodo: getNewVagas()", "erro ao pegar novas vagas - getNewVagas3()", "", 'now'));
-		}
-
 		dd("done");
+		exit;
 	}
 
 	public function verifyData()

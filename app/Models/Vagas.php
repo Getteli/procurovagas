@@ -166,33 +166,38 @@ class Vagas extends Model
 
 		public function createVagaWS(array $vagas)
 		{
-			$vaga = null;
 			try
 			{
 				foreach ($vagas as $key => $vaga)
 				{
-					$cargo = substr($vaga["titulo"], 0, 50);
-					$cargo = Codes::removeEmoji($cargo);
-					$razao_social = substr($vaga["empresa"], 0, 100);
-					$razao_social = Codes::removeEmoji($razao_social);
-					$desc_vaga = substr($vaga["desc_vaga"], 0, 4294967295);
-					$desc_vaga = Codes::removeEmoji($desc_vaga);
-					$estado = substr($vaga["estado"], 0, 2);
-					$cidade = substr($vaga["cidade"], 0, 100);
+					$hasVaga = $this::where('link',$vaga["link"])->get();
+					if (count($hasVaga) == 0)
+					{
+						$cargo = substr($vaga["titulo"], 0, 50);
+						$cargo = Codes::removeEmoji($cargo);
+						$razao_social = substr($vaga["empresa"], 0, 100);
+						$razao_social = Codes::removeEmoji($razao_social);
+						$desc_vaga = substr($vaga["desc_vaga"], 0, 4294967295);
+						$desc_vaga = Codes::removeEmoji($desc_vaga);
+						$estado = substr($vaga["estado"], 0, 2);
+						$cidade = substr($vaga["cidade"], 0, 100);
 
-					$vaga = $this::create([
-						'origem' => Origem::WebScrapper,
-						'cargo' => $cargo,
-						'razao_social' => $razao_social,
-						'n_vagas' => $vaga["n_vagas"],
-						'remuneracao' => $vaga["remuneracao"],
-						'desc_vaga' => $desc_vaga,
-						'estado' => $estado,
-						'cidade' => $cidade,
-						'slug' => $vaga["slug"] ? substr($vaga["slug"], 0, 100) : null,
-						'link' => substr($vaga["link"], 0, 255),
-					]);
+						$newvaga = $this::create([
+							'origem' => Origem::WebScrapper,
+							'cargo' => $cargo,
+							'razao_social' => $razao_social,
+							'n_vagas' => $vaga["n_vagas"],
+							'remuneracao' => $vaga["remuneracao"],
+							'desc_vaga' => $desc_vaga,
+							'estado' => $estado,
+							'cidade' => $cidade,
+							'slug' => $vaga["slug"] ? substr($vaga["slug"], 0, 100) : null,
+							'link' => substr($vaga["link"], 0, 255),
+						]);
+					}
 				}
+
+				$vagas = null;
 
 				return true;
 			}
