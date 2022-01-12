@@ -154,4 +154,13 @@ class VagasController extends Controller
 			return redirect()->back()->withInput();
         }
 	}
+
+	public function testEmail()
+	{
+		Mail::to("douglas_araujo018@outlook.com")
+		->send(new SendFormAbout('Teste email SMTP',
+		"nome", "descricao", "", "",'now'));
+
+		dd("email enviado");
+	}
 }

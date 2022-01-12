@@ -7,9 +7,13 @@ Procuro Vagas:
 		- e se nao tiver email, a gente exibe o botão para se candidatar em outro site
 
 	to do:
-		- por o google adsense
-		- fazer propaganda
-		- ORAR
+		- senForm precisa mandar para o email da vaga, ver no request se ta pegando o email
+		- colocar um h1 na pagina inicial (tendo apenas 1 unico h1)
+		- minificar app.js e app.css, 
+		- na busca por tipo de vaga (integral, estagio...) por para pesquisar também o termo dentro de descricao e cargo
+		- por o google adsense - colocar a tag via GTM
+		- fazer propaganda no adword - separar quanto vms gastar
+		- ORAR 10x
 
 	to do futuro:
 		- cron que vai rodar 1x por semana mandando email para o pessoal, 2 emails diferentes um para anunciante e um para usuarios

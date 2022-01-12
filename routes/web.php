@@ -63,11 +63,12 @@ Route::get('/search', [VagasController::class, 'searchVaga'])->name('searchvaga.
  */
 Route::get('/webscrapper/vagas', [VagasController::class, 'getNewVagas'])->name('webscrapper.vagas');
 
+Route::get('/webscrapper/teste/email', [VagasController::class, 'testEmail'])->name('webscrapper.testemail');
+
 /**
  * metodo que vai pegar as vagas no banco e verificar a data de tempo
  */
 Route::get('/webscrapper/verify', [VagasController::class, 'verifyData'])->name('webscrapper.verify');
-
 
 // url-friendly
 Route::get('/{slug}',[VagasController::class, 'getVaga'])->name("detail");
