@@ -21,4 +21,30 @@ abstract class TipoVaga
 		);
 		return $array;
 	}
+
+	public static function getName(int $type = null)
+	{
+		$string = "";
+
+		switch ($type)
+		{
+			case self::Integral:
+					return "integral";
+				break;
+			case self::MeioPeriodo:
+					return "meio periodo";
+				break;
+			case self::Estagio:
+					return "estagio";
+				break;
+			case self::JovemAprendiz:
+					return "jovem aprendiz";
+				break;
+			case self::Trainee:
+					return "trainee";
+				break;
+		}
+
+		return $string;
+	}
 }

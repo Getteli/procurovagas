@@ -240,8 +240,13 @@ class Vagas extends Model
 					$vagas = $vagas->where('cidade',$request->city);
 				}
 
-				if (!empty($request->type_vaga)) {
-					$vagas = $vagas->where('tipo_vaga',$request->type_vaga);
+				if (!empty($request->type_vaga))
+				{
+					$vagas = $vagas->Where(function ($vagas) use($request) {
+						$vagas->where('tipo_vaga',$request->type_vaga)
+						->orWhere('razao_social','LIKE','%'.$request->type_vaga.'%')
+						->orWhere('desc_vaga','LIKE','%'.$request->type_vaga.'%');
+					});
 				}
 
 				if ($request->remuneracao != 0) {

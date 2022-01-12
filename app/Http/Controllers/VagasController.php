@@ -128,7 +128,7 @@ class VagasController extends Controller
         {
 			foreach ($request->files as $key => $file)
 			{
-				Mail::to(\Config::get('mail.from.address'))
+				Mail::to($request->emailowner)
 				->send(new SendFormCV('Você recebeu um Currículo na sua vaga de emprego - ProcuroVagas',
 				$request->name, $request->description, $request->email, $file,'now'));
 			}

@@ -3,6 +3,7 @@
 
 <!-- conteudo -->
 @section('content')
+	<h1 class="d-none">Procurar vagas</h1>
 	<!-- slide -->
 	<div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
 		<div class="carousel-inner">
@@ -26,6 +27,7 @@
 		</button>
 	</div>
 
+	<h2 class="d-none">buscar sua vaga de emprego</h2>
 	<!-- form -->
 	<div class="container cardstyle">
 		<form class="row g-3" method="GET" action="{{route('searchvaga.form')}}">

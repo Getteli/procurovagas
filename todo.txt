@@ -5,13 +5,9 @@ Procuro Vagas:
 		- webscrapper pegando as vagas
 		- as vagas q ele pegar se tiver email mostra os campos de enviar email direto, subindo o cv temporariamente e envia, depois deleta
 		- e se nao tiver email, a gente exibe o botão para se candidatar em outro site
-
+		- se tiver dando erro de smtp ao enviar email, abre esse link logado na conta da ilion no gmail e permita - https://accounts.google.com/b/0/DisplayUnlockCaptcha
+	
 	to do:
-		- senForm precisa mandar para o email da vaga, ver no request se ta pegando o email
-		- colocar um h1 na pagina inicial (tendo apenas 1 unico h1)
-		- minificar app.js e app.css, 
-		- na busca por tipo de vaga (integral, estagio...) por para pesquisar também o termo dentro de descricao e cargo
-		- por o google adsense - colocar a tag via GTM
 		- fazer propaganda no adword - separar quanto vms gastar
 		- ORAR 10x
 
