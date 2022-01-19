@@ -62,7 +62,7 @@
 			</ul>
 			<h3>Mais informações</h3>
 			<p>Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em nosso site.</p>
-			<p>Esta política é efetiva a partir de <strong>January</strong>/<strong>2022</strong>.</p>
+			<p>Esta política é efetiva a partir de <strong>Janeiro</strong>/<strong>2022</strong>.</p>
 		</div>
 	</div>
 @endsection
