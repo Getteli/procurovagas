@@ -82,7 +82,7 @@
 		<div class="row row-cols-1 row-cols-md-4 g-4 list">
 			@if(count($vagas) != 0)
 				@foreach($vagas as $key => $vaga)
-					@if( ($key / 3) == 0)
+					@if( ($key % 6) == 0 || ($key % 7) == 0)
 						<div class="col-md-4 col-sm-12 size-card">
 							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352280684472674"
 								crossorigin="anonymous"></script>
