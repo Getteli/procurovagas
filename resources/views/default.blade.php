@@ -102,6 +102,27 @@
 				@yield('content')
 			</div>
 
+			<!-- Modal -->
+			<div class="modal fade background-modaladb" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title w-100 text-center" id="staticBackdropLabel">
+								<i class="bi bi-exclamation-triangle-fill text-warning"></i>
+								AdBlock detectado 
+								<i class="bi bi-exclamation-triangle-fill text-warning"></i>
+							</h5>
+						</div>
+						<div class="modal-body">
+							<h5>
+								Pedimos encarecidamente que desative o adblock para que possa utilizar o site completamente, não cobramos absolutamente nada por oferecer o serviço, porém, desativar o adblock ajuda a manter o site ativo e melhorar o serviço cada vez mais. Desde já agradecemos a compreensão. Obrigado.
+							</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 			<footer class="text-center text-lg-start navbar-dark black-90 text-muted">
 				<!-- Section: Links  -->
 				<section class="pt-1">
@@ -163,4 +184,8 @@
 	<!-- scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
+	<script src="{{ asset('js/prevent-adblock.js') }}"></script>
+	<script>
+		preventAdBlock();
+	</script>
 	@yield('scripts')
