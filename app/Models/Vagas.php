@@ -210,7 +210,7 @@ class Vagas extends Model
 		public static function listVagas()
 		{
 			try {
-				$vagas = self::orderByDesc('created_at')->paginate(27);
+				$vagas = self::orderByDesc('created_at')->orderBy('origem')->paginate(27);
 				return $vagas;
 			} catch (\Throwable $th) {
 				//throw $th;
@@ -268,7 +268,7 @@ class Vagas extends Model
 					}
 				};
 
-				return $vagas->orderByDesc('created_at')->paginate(27);
+				return $vagas->orderByDesc('created_at')->orderBy('origem')->paginate(27);
 			} catch (\Throwable $th) {
 				return false;
 			}
