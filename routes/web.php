@@ -70,6 +70,11 @@ Route::get('/webscrapper/teste/email', [VagasController::class, 'testEmail'])->n
  */
 Route::get('/webscrapper/verify', [VagasController::class, 'verifyData'])->name('webscrapper.verify');
 
+/**
+ * metodo que vai gerar o sitemap das vagas com slug no site
+ */
+Route::get('/generator/sitemap', [VagasController::class, 'generateSitemap']);
+
 // url-friendly
 Route::get('/{slug}',[VagasController::class, 'getVaga'])->name("detail");
 
@@ -84,6 +89,3 @@ Route::post('/send/form/about', [Controller::class, 'sendForm'])->name('send.for
 
 // envia o CV pela vaga
 Route::post('/send/form/vaga', [VagasController::class, 'sendForm'])->name('send.form.vaga');
-
-// teste sitemap generator
-Route::get('/gerarsitemap', [VagasController::class, 'generateSitemap']);

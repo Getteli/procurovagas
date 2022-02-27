@@ -295,14 +295,22 @@ class Vagas extends Model
 
 		public function sitemapVagas()
 		{
-			$path = "/../../public/";
+			$path = "../public/sitemap_vagas.xml";
+			$vagas = $this->all();
+			$smg = Sitemap::create();
+			
+			foreach ( $vagas as $key => $value)
+			{
+				if(!empty($value->slug) && !is_null($value->slug))
+				{
+					$smg->add(Url::create($value->slug)
+					->setLastModificationDate(Carbon::yesterday())
+					->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+					->setPriority(0.9));
+				}
+			}
 
-			Sitemap::create()
-			->add(Url::create('/teste-map')
-				->setLastModificationDate(Carbon::yesterday())
-				->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
-				->setPriority(0.1))
-		   ->writeToFile($path);
+			$smg->writeToFile($path);
 		}
 	#endregion
 }
