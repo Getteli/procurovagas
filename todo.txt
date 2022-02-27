@@ -21,6 +21,9 @@ Procuro Vagas:
 		- cron que vai rodar 1x por dia as 1 da manha, pra ver se a data da vaga ja passou e deletar
 			. 0 1 * * * wget https://procurovagas.com.br/webscrapper/verify
 
+		- cron que vai gerar o sitemap de vagas
+			. 0 1 * * * wget https://procurovagas.com.br/webscrapper/verify
+
 	antes de subir e/ou depois de subir (acessando o terminal no cpanel e acessar a pasta do projeto), execute:
 		. composer dump-autoload
 		. php artisan config:cache
