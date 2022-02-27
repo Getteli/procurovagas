@@ -117,6 +117,20 @@ class VagasController extends Controller
 		exit;
 	}
 
+	public function generateSitemap()
+	{
+		try
+		{
+			(new Vagas())->sitemapVagas();
+		}
+		catch (\Throwable $th)
+		{
+			Mail::to(\Config::get('mail.from.address'))
+			->send(new SendFormAbout($th->getMessage(),
+			"metodo: generateSitemap()", "erro ao gerar sitemap - generateSitemap()", "", 'now'));
+		}
+	}
+
 	public function verifyData()
 	{
 		WebScrapper::verifyData();

@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use App\Enum\TipoVaga;
 use App\Enum\TipoEmail;
 use App\Enum\Origem;
+use Carbon\Carbon;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 use App\Enum\Subscribe;
 use App\Enum\FormaTrabalho;
 use Illuminate\Http\Request;
@@ -288,6 +291,18 @@ class Vagas extends Model
 		{
 			$email = Emails::where('vagas_id', $this->vagas_id)->where('tipo_email', TipoEmail::Empresa)->first();
 			return $email->email ?? '';
+		}
+
+		public function sitemapVagas()
+		{
+			$path = "/../../public/";
+
+			Sitemap::create()
+			->add(Url::create('/teste-map')
+				->setLastModificationDate(Carbon::yesterday())
+				->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+				->setPriority(0.1))
+		   ->writeToFile($path);
 		}
 	#endregion
 }

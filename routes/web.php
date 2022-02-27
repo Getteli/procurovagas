@@ -84,3 +84,6 @@ Route::post('/send/form/about', [Controller::class, 'sendForm'])->name('send.for
 
 // envia o CV pela vaga
 Route::post('/send/form/vaga', [VagasController::class, 'sendForm'])->name('send.form.vaga');
+
+// teste sitemap generator
+Route::get('/gerarsitemap', [VagasController::class, 'generateSitemap']);
