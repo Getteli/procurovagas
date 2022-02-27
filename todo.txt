@@ -24,6 +24,20 @@ Procuro Vagas:
 		- cron que vai gerar o sitemap de vagas
 			. 45 1 * */3 * wget https://procurovagas.com.br/webscrapper/verify
 
+	caso o ENV nao limpe de forma alguma, siga esses passos
+		. php artisan cache:clear
+		. rm -rf bootstrap/cache/*
+		. php artisan optimize
+		. obs: se der problema sobre as rotas, apague o arquivo routes-v7 no bootstrap/cache
+
+		OU
+
+		. php artisan config:clear <- limpa
+		. php artisan config:cache <- armazena
+
+		OU apenas
+		. php artisan config:cache
+
 	antes de subir e/ou depois de subir (acessando o terminal no cpanel e acessar a pasta do projeto), execute:
 		. composer dump-autoload
 		. php artisan config:cache
