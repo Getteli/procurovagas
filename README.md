@@ -1,4 +1,4 @@
-<p align="center"><a href="https://getteli.github.io/procurovagas/" target="_blank"><img src="https://getteli.github.io/procurovagas/src/midia/logo_AIA.png" width="200"></a></p>
+<p align="center"><a href="https://getteli.github.io/procurovagas/" target="_blank"><img src="https://getteli.github.io/procurovagas/public/images/procurovagasnegativo.png" width="150"></a></p>
 
 <h2 align="center">
     <b>Procuro Vagas</b>

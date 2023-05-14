@@ -9,7 +9,147 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title>Procuro Vagas</title>
+    <style>
+        .btn-effect
+        {
+            filter: drop-shadow(0px 2px 4px var(--color-shadow));
+            transition: all 0.35s;
+            outline: 0;
+            cursor: pointer;
+        }
+
+        .btn-effect:hover, .btn-effect:focus,
+        .btn-effect:hover > img, .btn-effect:focus > img
+        {
+            transform: scale(0.90);
+            filter: none;
+            transition: all 0.35s;
+            outline: 0;
+            opacity: 1;
+            transition: ease-in-out 0.5s;
+        }
+
+        .logo-douglas
+        {
+            display: inline-grid;
+            text-align: center;
+            color: #000 !important;
+        text-decoration: none !important
+        }
+        .logo-douglas > img
+        {
+        margin: 0 auto !important;
+        }
+
+        footer
+        {
+            display: flex !important;
+            justify-content: space-between;
+            width: 90%;
+            height: auto;
+            color: rgba(0,0,0, 0.8);
+        font-family: 'Dosis', sans-serif !important;
+            margin: 5em auto 0 auto;
+        }
+
+        footer > div > p
+        {
+            text-align: center;
+            line-height: 3;
+        }
+
+        @media screen and (max-width: 900px)
+        {
+            footer
+            {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 765px)
+        {
+        .weather-card
+        {
+            max-width: 300px;
+        }
+            footer
+            {
+                display: grid !important;
+                display: -ms-inline-grid !important;
+                display: -moz-inline-grid !important;
+                text-align: center;
+                width: fit-content;
+            }
+
+            footer > div
+            {
+                margin: 10px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <main class="container mt-5">
+        <!-- projeto -->
+        <div class="row">
+            <div class="col-12 col-sm-6 text-center">
+                <center>
+                        <img src="public/images/procurovagas.png" alt="ProcuroVagas" width="100px">
+                        <h1>Procuro Vagas</h1>
+                </center>
+                <p class="fs-6 ">Site voltado para juntar vagas de emprego de diversos sites e internet em um só lugar.</p>
+            </div>
+            <div class="col-12 col-sm-6">
+                <section>
+                    <h4>O Projeto</h4>
+                    <p class="text-wrap">Procuro Vagas é um site criado em <b>laravel</b>, usando <b>PHP</b>, <b>javascript</b> e técnicas de <b>WebScrapper</b>, seu front é feito com <b>Bootstrap</b>. A ideia é ser feito de forma automatica, e de tempos em tempos o script automatico (via cronjob), atualiza o banco de dados com novas vagas. </p>
+                    <p>Além disto, o script também tem a ideia de atualizar vagas já existentes (caso a vaga ainda exista permanece ativa), se ja foi excluida, se possui data então pode excluir quando passar da data (cronjob).</p>
+                </section>
+            </div>
+        </div>
+        <!-- tecnologias -->
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <section>
+                    <h4>Idealização</h4>
+                    <p class="text-wrap">Criado por um Douglas Araujo Silva e matheus Balduino Chagas, o site ser automatizado via scripts automaticos, com adsense rodando pelo site para facilitar a monetização.</p>
+                    <p class="text-wrap">A ideia de juntar todas as vagas em um só lugar, veio da necessidade de quando uma pessoa precisa procurar, ela tem que ir em mais de 2, 5 sites ao mesmo tempo. Juntar todas as vagas em um só lugar para facilitar o usuário, pensando no trabalhador.</p>
+                </section>
+            </div>
+            <div class="col-12 col-sm-6">
+                <section>
+                    <h4>Tecnologias</h4>
+                    <ul>
+                        <li>Laravel: O framework <b>Laravel</b> ajudou em todo o processo, rota, classes, cronjob, envio de emails e toda criação do projeto.</li>
+                        <li>Javascript: para interação no DOM, efeitos visuais e muitos mais.</li>
+                        <li>Bootstrap: Para todo o front, facilitando o design.</li>
+                        <li>WebScrapper: faz a raspagem em alguns sites de emprego, e depois juntando todas elas um array para enviar o banco de dados, feito automaticamente.</li>
+                        <li>MySQL: banco de dados relacional, estruturado com modelagem conceitual e lógico.</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <!-- exemplo -->
+        <div class="row mt-5">
+            <div class="col">
+                <p class="text-wrap">Page github não permite páginas em php ou deploy de projetos. Por isto, fiz uma página de exemplo em <i>html</i></p>
+                <a href="exemplo.html" role="button" class="btn btn-primary btn-wave btn-md btn-effect rounded">Acessar exemplo</a>
+            </div>
+        </div>
+    </main>
+	<footer>
+		<div class="">
+			<p>Veja este projeto no <a href="https://github.com/Getteli/procurovagas"><b>GITHUB</b></a></p>
+		</div>
+		<div class="">
+			<a class="logo-douglas" href="https://getteli.github.io/Getteli">
+				<img src="https://getteli.github.io/Getteli/resources/midia/DG_logo.png" class="mx-auto mb-4 p-0" alt="DG" width="35px">
+				<span>Douglas A. Silva</span>
+			</a>
+		</div>
+		<div class="">
+			<p>criado pelo <b>Douglas Araujo Silva</b>, entre em contato para mais informação.</p>
+		</div>
+	</footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
