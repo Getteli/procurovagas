@@ -84,17 +84,7 @@
 				@foreach($vagas as $key => $vaga)
 					@if( ($key % 6) == 0 || ($key % 7) == 0)
 						<div class="col-md-4 col-sm-12 size-card">
-							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352280684472674"
-								crossorigin="anonymous"></script>
-							<ins class="adsbygoogle"
-								style="display:block"
-								data-ad-format="fluid"
-								data-ad-layout-key="-gw-3+1f-3d+2z"
-								data-ad-client="ca-pub-8352280684472674"
-								data-ad-slot="9473681713"></ins>
-							<script>
-								(adsbygoogle = window.adsbygoogle || []).push({});
-							</script>
+							<h3>Entra uma propaganda adsense aqui</h3>
 						</div>
 					@endif
 					<div class="col-md-4 col-sm-12 size-card">

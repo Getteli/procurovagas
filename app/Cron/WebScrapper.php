@@ -72,12 +72,14 @@ abstract class WebScrapper
 	 */
 	public static function getNewVagas()
 	{
+		ini_set('max_execution_time', 6000); // 100 min
 		$datavagas = [];
+		$tituloArray = [];
 		libxml_use_internal_errors(true);
 		$html = file_get_contents('https://www.trabalhabrasil.com.br/vagas-empregos');
 		$domDocument = new \DOMDocument();
 		$domDocument->LoadHTML($html);
-		$titulotags = $domDocument->getElementsByTagName("h3");
+		$titulotags = $domDocument->getElementsByTagName("h2");
 		$tituloList = '';
 		foreach($titulotags as $titulo)
 		{
@@ -87,7 +89,7 @@ abstract class WebScrapper
 				$tituloArray = explode("<br>", $tituloList);
 			}
 		}
-		$empresaTags = $domDocument->getElementsByTagName("h4");
+		$empresaTags = $domDocument->getElementsByTagName("h3");
 		$empresaList = '';
 		foreach($empresaTags as $empresa)
 		{
@@ -97,7 +99,7 @@ abstract class WebScrapper
 				$empresaArray = explode("<br>", $empresaList);
 			}
 		}
-		$localTags = $domDocument->getElementsByTagName("h5");
+		$localTags = $domDocument->getElementsByTagName("h3");
 		$localList = '';
 		foreach($localTags as $local)
 		{
@@ -209,8 +211,9 @@ abstract class WebScrapper
 	 */
 	public static function getNewVagas2()
 	{
+		ini_set('max_execution_time', 6000); // 100 min
 		$datavagas = [];
-
+		$tituloArray = [];
 		// var auxliares
 		$estadosBrasileiros = self::Estados;
 		$auxestados = count($estadosBrasileiros);
@@ -317,7 +320,9 @@ abstract class WebScrapper
 	 */
 	public static function getNewVagas3()
 	{
+		ini_set('max_execution_time', 6000); // 100 min
 		$datavagas = [];
+		$tituloArray = [];
 		// var aux
 		$estadosBrasileiros = self::EstadosSigla;
 		$auxestados = count($estadosBrasileiros);

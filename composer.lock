@@ -2065,7 +2065,7 @@
         },
         {
             "name": "league/glide",
-            "version": "2.0.x-dev",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/glide.git",
@@ -2081,7 +2081,7 @@
                 "guzzlehttp/psr7": "^1.1",
                 "intervention/image": "^2.1",
                 "league/flysystem": "^1.0",
-                "php": "^5.4 | ^7.0",
+                "php": "^5.4 | ^7.0 | ^8.1",
                 "symfony/http-foundation": "^2.3|^3.0|^4.0|^5.0"
             },
             "require-dev": {
@@ -4017,7 +4017,7 @@
                 "ext-exif": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "league/glide": "^2.0",
+                "league/glide": "^2.2.1",
                 "php": "^7.2|^8.0",
                 "spatie/image-optimizer": "^1.1",
                 "spatie/temporary-directory": "^1.0|^2.0",

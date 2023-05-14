@@ -177,11 +177,15 @@ class Vagas extends Model
 					if (count($hasVaga) == 0)
 					{
 						$cargo = substr($vaga["titulo"], 0, 50);
-						$cargo = Codes::removeEmoji($cargo);
+						$cargo = $cargo;
+						// Codes::removeEmoji($cargo);
 						$razao_social = substr($vaga["empresa"], 0, 100);
-						$razao_social = Codes::removeEmoji($razao_social);
+						$razao_social = $razao_social;
+						$remuneracao = floatval(preg_replace('/[^0-9]/','.', $vaga["remuneracao"]));
+						// Codes::removeEmoji($razao_social);
 						$desc_vaga = substr($vaga["desc_vaga"], 0, 4294967295);
-						$desc_vaga = Codes::removeEmoji($desc_vaga);
+						$desc_vaga = $desc_vaga;
+						// Codes::removeEmoji($desc_vaga);
 						$estado = substr($vaga["estado"], 0, 2);
 						$cidade = substr($vaga["cidade"], 0, 100);
 
@@ -190,7 +194,7 @@ class Vagas extends Model
 							'cargo' => $cargo,
 							'razao_social' => $razao_social,
 							'n_vagas' => $vaga["n_vagas"],
-							'remuneracao' => $vaga["remuneracao"],
+							'remuneracao' => $remuneracao,
 							'desc_vaga' => $desc_vaga,
 							'estado' => $estado,
 							'cidade' => $cidade,
@@ -206,7 +210,8 @@ class Vagas extends Model
 			}
 			catch (\Throwable $e)
 			{
-				return $e->getMessage();
+				dd($e->getMessage());
+				// return $e->getMessage();
 			}
 		}
 

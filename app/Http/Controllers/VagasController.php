@@ -77,6 +77,8 @@ class VagasController extends Controller
 
 	public function getNewVagas()
 	{
+		ini_set('max_execution_time', 6000); // 100 min
+
 		// webscrapper 1
 		try
 		{
@@ -87,12 +89,13 @@ class VagasController extends Controller
 			$vagasWS1 = WebScrapper::getNewVagas();
 
 			// site 2
-			$vagasWS2 = WebScrapper::getNewVagas2();
+			// $vagasWS2 = WebScrapper::getNewVagas2();
 
-			// site 3
-			$vagasWS3 = WebScrapper::getNewVagas3();
+			// // site 3
+			// $vagasWS3 = WebScrapper::getNewVagas3();
 
-			$all_vagas = array_merge($vagasWS1, $vagasWS2, $vagasWS3);
+			$all_vagas = $vagasWS1;
+			// array_merge($vagasWS1, $vagasWS2, $vagasWS3);
 			$all_vagas = array_filter($all_vagas);
 
 			$result = $vagas->createVagaWS($all_vagas);
@@ -108,9 +111,10 @@ class VagasController extends Controller
 		}
 		catch (\Throwable $th)
 		{
-			Mail::to(\Config::get('mail.from.address'))
-			->send(new SendFormAbout($th->getMessage(),
-			"metodo: getNewVagas()", "erro ao pegar novas vagas - getNewVagas()", "", 'now'));
+			dd($th->getMessage());
+			// Mail::to(\Config::get('mail.from.address'))
+			// ->send(new SendFormAbout($th->getMessage(),
+			// "metodo: getNewVagas()", "erro ao pegar novas vagas - getNewVagas()", "", 'now'));
 		}
 
 		dd("done");
@@ -167,14 +171,5 @@ class VagasController extends Controller
     
 			return redirect()->back()->withInput();
         }
-	}
-
-	public function testEmail()
-	{
-		Mail::to("douglas_araujo018@outlook.com")
-		->send(new SendFormAbout('Teste email SMTP',
-		"nome", "descricao", "", "",'now'));
-
-		dd("email enviado");
 	}
 }
